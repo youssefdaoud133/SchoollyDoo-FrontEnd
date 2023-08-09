@@ -1,0 +1,41 @@
+/* src/styles.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+#Logo-in-login {
+  width: 15rem;
+  height: 15rem;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #e48f53 transparent #e48f53 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+button {
+  cursor: pointer;
+}
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fill-progress {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+.animate-loading {
+  animation: fill-progress 1.5s infinite ease-in-out;
+}
