@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+/* src/styles.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+#Logo-in-login {
+  width: 15rem;
+  height: 15rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #e48f53 transparent #e48f53 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  cursor: pointer;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
+@keyframes spin-anim {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+@keyframes fill-progress {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+.animate-loading {
+  animation: fill-progress 1.5s infinite ease-in-out;
 }
