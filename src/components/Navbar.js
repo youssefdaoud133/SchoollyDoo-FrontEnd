@@ -5,6 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
+import { LazyLoadImage, afterLoad } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css"; // Import the CSS for the blur effect
+
+//
+import CrudApi from "../utils/CrudClass";
+
 // import notification component
 import Notification from "./Notification";
 // import AccountNameNavigation
@@ -31,7 +37,8 @@ import { changeaccount } from "../rtk/slices/AccountSlice";
 // Images
 import Logo from "../pictures/LogoF2.png";
 import guestLogo from "../pictures/guestF.png";
-
+//
+const Crud = new CrudApi("http://localhost:8000/api/v1", "/auth/myprofile");
 // Constants
 const guest_AccountName = {
   name: "guest",
@@ -82,6 +89,36 @@ export default function Example() {
     localStorage.removeItem("User");
     window.location.href = "/";
   };
+
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedUser = JSON.parse(window.localStorage.getItem("User"));
+        // Fetch data using Axios
+        const response = await Crud.fetchItems(() => {
+          setIsLoading(false);
+        }, storedUser.data.token);
+        setData(response);
+      } catch (error) {
+        setIsLoading(false);
+
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="spinner"></div>
+      </div>
+    ); // Display a loading indicator
+  }
 
   return (
     <>
@@ -141,11 +178,14 @@ export default function Example() {
                               <span className="sr-only">
                                 Open AccountName menu
                               </span>
-                              <img
+
+                              <LazyLoadImage
                                 className="h-8 w-8 rounded-full"
+                                effect="blur"
+                                loading="lazy"
                                 src={
                                   AccountName.data.name
-                                    ? AccountName.imageUrl
+                                    ? data.profileIMG
                                     : guest_AccountName.imageUrl
                                 }
                                 alt=""

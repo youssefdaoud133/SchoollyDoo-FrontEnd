@@ -97,6 +97,26 @@ class CrudOperations {
     }
   }
 
+  // Create a new profile picture
+  async createProfilePicture(itemData, token) {
+    try {
+      if (token) {
+        // Set the token in the request headers
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Type: "ProfilePictures",
+            token: `Bearer ${token}`, // Add your token here
+          },
+        };
+        const response = await axios.post(`${this.apiUrl}`, itemData, config);
+        return response.data;
+      }
+    } catch (error) {
+      return { errormsg: error.response.data.message };
+    }
+  }
+
   // Update an existing item
   async updateItem(itemId, itemData) {
     try {
