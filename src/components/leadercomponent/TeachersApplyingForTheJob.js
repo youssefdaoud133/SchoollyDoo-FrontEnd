@@ -109,7 +109,7 @@ export default function TeachersApplyingForTheJob() {
             <div key={apply._id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
-                  src={apply.owner.gender == "male" ? maleimgalt : femaleimgalt}
+                  src={apply.owner.profileIMG}
                   // alt={imgalt}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />

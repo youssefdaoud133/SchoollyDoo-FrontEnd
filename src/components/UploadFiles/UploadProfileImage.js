@@ -148,10 +148,7 @@ const UploadProfileImage = ({ dp }) => {
             <LazyLoadImage
               src={preview || dp}
               alt=""
-              // afterLoad={() => {
-              //   setloading(0);
-              // }}
-              className="w-48 h-48 mx-auto object-cover rounded-full"
+              className="mx-auto object-cover rounded-full h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 xl:h-80 xl:w-80"
               effect="blur"
               loading="lazy"
               // onLoad={() => {

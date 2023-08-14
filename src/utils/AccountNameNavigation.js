@@ -21,6 +21,13 @@ export default function AccountNameNavigation(status) {
         { name: "Sign out", href: "#" },
         { name: "Dashboard", href: "#" },
       ];
+    case "student":
+      return [
+        { name: "My Profile", href: "#" },
+        { name: "Settings", href: "#" },
+        { name: "Sign out", href: "#" },
+        { name: "Dashboard", href: "#" },
+      ];
 
     default:
       return [

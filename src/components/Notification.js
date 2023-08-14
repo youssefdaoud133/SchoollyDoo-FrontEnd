@@ -126,7 +126,7 @@ export default function Notification(props) {
                         )}
 
                         <img
-                          src={props.guest_AccountName.imageUrl}
+                          src={notification.owner.profileIMG}
                           alt="User Avatar"
                           className="w-8 h-8 rounded-full"
                         />

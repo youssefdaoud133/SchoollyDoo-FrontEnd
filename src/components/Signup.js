@@ -4,6 +4,7 @@ import { countries } from "country-cities";
 import { useState } from "react";
 import SignUpForLeaders from "./SignUpForLeaders";
 import SignUpForTeachers from "./SignUpForTeachers";
+import SignUpForStudents from "./SignUpForStudents";
 
 export default function Signup() {
   const [Role, setRole] = useState("student");
@@ -17,7 +18,7 @@ export default function Signup() {
   } else if (Role === "teacher") {
     content = <SignUpForTeachers Role={Role} />;
   } else if (Role === "student") {
-    content = <div>Student Content</div>;
+    content = <SignUpForStudents Role={Role} />;
   } else if (Role === "parent") {
     content = <div>Parent Content</div>;
   }
